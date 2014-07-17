@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Getting and Cleaning Data - Course Project</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Getting and Cleaning Data - Course Project</h1>
+
+<h2>The Variables</h2>
+
+<p>Variables (column names) found in the output file &#39;clean_data.csv&#39;:</p>
+
+<ul>
+<li>ACTIVITY: Each activity found in &#39;activity_labls.txt&#39; of the original data for every subject</li>
+<li>SUBJECT: Each subject number from training and test datasets</li>
+<li>Other: All other variables are attributes explained below</li>
+<li>The values in each cell represent the mean for that subject and that activity for the particular measurement</li>
+</ul>
+
+<h2>The Data</h2>
+
+<p>A full description of the data used in this project can be found at <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">The UCI Machine Learning Repository</a>
+<a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">The source data for this project can be found here.</a></p>
+
+<h3>Attribute Information:</h3>
+
+<p>For each record in the dataset it is provided:</p>
+
+<ul>
+<li>Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.</li>
+<li>Triaxial Angular velocity from the gyroscope.</li>
+<li>A 561-feature vector with time and frequency domain variables.</li>
+<li>Its activity label.</li>
+<li>An identifier of the subject who carried out the experiment.</li>
+</ul>
+
+<h3>Data files and descriptions</h3>
+
+<ul>
+<li>&#39;features_info.txt&#39;: Shows information about the variables used on the feature vector.</li>
+<li>&#39;features.txt&#39;: List of all features.</li>
+<li>&#39;activity_labels.txt&#39;: Links the class labels with their activity name.</li>
+<li>&#39;train/X_train.txt&#39;: Training set.</li>
+<li>&#39;train/y_train.txt&#39;: Training labels.</li>
+<li>&#39;test/X_test.txt&#39;: Test set.</li>
+<li>&#39;test/y_test.txt&#39;: Test labels.</li>
+<li>&#39;train/subject_train.txt&#39;: Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. </li>
+<li>&#39;train/Inertial Signals/total_acc_x_train.txt&#39;: The acceleration signal from the smartphone accelerometer X axis in standard gravity units &#39;g&#39;. Every row shows a 128 element vector. The same description applies for the &#39;total_acc_x_t&#39;</li>
+<li>&#39;rain.txt&#39; and &#39;total_acc_z_train.txt&#39; files for the Y and Z axis. </li>
+<li>&#39;train/Inertial Signals/body_acc_x_train.txt&#39;: The body acceleration signal obtained by subtracting the gravity from the total acceleration. </li>
+<li>&#39;train/Inertial Signals/body_gyro_x_train.txt&#39;: The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second.</li>
+</ul>
+
+<h2>Data Transformations</h2>
+
+<p>The data are transformed from their raw form to a tidy data set by the following steps:</p>
+
+<ul>
+<li>File names are defined and loaded into R using <code>read.table()</code></li>
+</ul>
+
+</body>
+
+</html>
+
